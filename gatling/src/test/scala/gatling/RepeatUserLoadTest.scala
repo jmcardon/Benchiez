@@ -28,7 +28,7 @@ class RepeatUserLoadTest extends Simulation {
     }
 
   setUp(
-    scn.inject(constantUsersPerSec(constant).during(120.seconds))
+    scn.inject(constantUsersPerSec(constant).during(60.seconds))
   ).protocols(httpConf)
     .throttle(
       reachRps(50000).in(10.seconds),
