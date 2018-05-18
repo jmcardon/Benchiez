@@ -28,7 +28,7 @@ class RepeatUserLoadTest extends Simulation {
     }
 
   setUp(
-    scn.inject(constantUsersPerSec(constant).during(180.seconds))
+    scn.inject(constantUsersPerSec(constant).during(120.seconds))
   ).protocols(httpConf)
 
 }
