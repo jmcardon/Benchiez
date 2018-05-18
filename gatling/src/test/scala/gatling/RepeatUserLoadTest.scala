@@ -21,7 +21,7 @@ class RepeatUserLoadTest extends Simulation {
     .shareConnections
 
   val scn = scenario(s"Hitting $baseUrl$route")
-    .repeat(5, "n") {
+    .repeat(6, "n") {
       exec(
         http("Request to ping endpoint ${n}")
           .get(route))
@@ -30,5 +30,9 @@ class RepeatUserLoadTest extends Simulation {
   setUp(
     scn.inject(constantUsersPerSec(constant).during(120.seconds))
   ).protocols(httpConf)
+    .throttle(
+      reachRps(60000).in(10.seconds),
+      holdFor(120.seconds)
+    )
 
 }
