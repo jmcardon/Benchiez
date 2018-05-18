@@ -37,6 +37,14 @@ lazy val root = (project in file("."))
       "-language:implicitConversions"
     ),
     test in assembly := {},
+    mainClass in assembly := Some("com.maximum.moe.benchiez.EmberServer"),
+    assemblyMergeStrategy in assembly := {
+      case x if x.endsWith("io.netty.versions.properties") => MergeStrategy.first
+      case x =>
+        val oldStrategy = (assemblyMergeStrategy in assembly).value
+        oldStrategy(x)
+    },
+    assemblyJarName := "ember_benchie.jar"
   )
 
 lazy val gatling = (project in file("gatling"))
