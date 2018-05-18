@@ -44,7 +44,8 @@ lazy val root = (project in file("."))
         val oldStrategy = (assemblyMergeStrategy in assembly).value
         oldStrategy(x)
     },
-    assemblyJarName := "ember_benchie.jar"
+    assemblyJarName := "ember_benchie.jar",
+    fork in test := true,
   )
 
 lazy val gatling = (project in file("gatling"))
